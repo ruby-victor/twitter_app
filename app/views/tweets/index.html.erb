@@ -1,40 +1,43 @@
 <div class='search_form'>
-				<%= form_tag('/tweets') do -%>
-								Hash Tag: <%=text_field_tag 'search_tag','',:placeholder=>"keyword (eg. #ruby)",:size=>10%>
-								Count: <%=text_field_tag 'search_count',5,:size=>1 %>
-								<%=submit_tag "search",:class => "btn" %>
-				<% end %>
-				<% if !@errors.nil? %>
-				<div class = "errors">
-								<% @errors.each do |k|%>
-												* <%=k%>
-								<%end%>
-				</div>
-				<% end %>
+<%= form_tag('/tweets') do -%>
+Hash Tag: <%=text_field_tag 'search_tag','',:placeholder=>"keyword (eg. #ruby)",:size=>10%>
+Count: <%=text_field_tag 'search_count',5,:size=>1 %>
+<%=submit_tag "search",:class => "btn" %>
+<% end %>
+
+<% if !@errors.nil? %>
+<div class = "errors">
+<% @errors.each do |k|%>
+* <%=k%>
+<%end%>
 </div>
+<% end %>
+</div>
+
 <br/>
 <br/>
+
 <% if !@results.nil? %>
 <div class="search_results">
 <%@results.each do |t|%>
-				<div class="tweet">
-								<div class="image">
-												<%=image_tag(t.user.profile_image_url,:size=>"100x100")%>
-								</div>
-								<div class="text">	
-												<div class="name">
-																<%=t.user.name%>
-												</div>			
-												<div class="tweet_text"> 
-																<%=t.text%>
-												</div>
-												<div class="timestamp">
-																<%=time_ago_in_words(t.created_at)%>.. ago ..!<br/>
-																on (<%=t.created_at.to_date.strftime("%d %b %Y")%> @ <%=t.created_at.strftime("%I:%M %p")%>)  
-												</div>
-									</div>
-				</div>				
- <% end %>
+<div class="tweet">
+<div class="image">
+<%=image_tag(t.user.profile_image_url,:size=>"100x100")%>
+</div>
+<div class="text">	
+<div class="name">
+<%=t.user.name%>
+</div>			
+<div class="tweet_text"> 
+<%=t.text%>
+</div>
+<div class="timestamp">
+<%=time_ago_in_words(t.created_at)%>.. ago ..!<br/>
+on (<%=t.created_at.to_date.strftime("%d %b %Y")%> @ <%=t.created_at.strftime("%I:%M %p")%>)  
+</div>
+</div>
+</div>				
+<% end %>
 </div>
 <% end %>
 
